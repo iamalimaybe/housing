@@ -30,7 +30,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ControllerAdvice
 @Slf4j
-public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ AuthenticationException.class })
     @ResponseBody
     public ResponseEntity<Object> handleAuthenticationException(Exception ex) {
