@@ -1,7 +1,7 @@
 package com.legit.housing.service.impl;
 
 import com.legit.housing.dto.response.JwtRes;
-import com.legit.housing.service.AuthService;
+import com.legit.housing.service.TokeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -16,13 +16,13 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @Service
-public class AuthServiceImpl implements AuthService {
-
+public class TokenServiceImpl implements TokeService {
     @Value("${jwt.token.expiry:10}")
     private Long tokenExpiry;
 
     @Autowired
     private JwtEncoder jwtEncoder;
+
     @Override
     public JwtRes generateToken(Authentication authentication) {
         Instant now = Instant.now();

@@ -1,29 +1,33 @@
 package com.legit.housing.entity.main;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+
 @Getter
 @Setter
 @MappedSuperclass
-public class AuditableEntityBase {
-    @CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AuditableEntityBase {
+    @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    protected Instant createdAt;
     @CreatedBy
     @Column(name = "created_by")
-    private String createdBy;
-    @LastModifiedBy
+    protected String createdBy;
+    @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-    @LastModifiedDate
+    protected Instant updatedAt;
+    @LastModifiedBy
     @Column(name = "updated_by")
-    private String updatedBy;
+    protected String updatedBy;
 }

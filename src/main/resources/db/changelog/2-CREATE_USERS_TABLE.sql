@@ -13,9 +13,9 @@ CREATE TABLE users (
     lastname varchar(100),
     active BOOLEAN NOT NULL DEFAULT FALSE,
     user_role role,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (timezone('utc', now())),
     created_by VARCHAR(30) NOT NULL DEFAULT '',
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (timezone('utc', now())),
     updated_by VARCHAR(30) NOT NULL DEFAULT '',
     CONSTRAINT uc_user_username UNIQUE (username)
 );
